@@ -1,24 +1,24 @@
 # Number in words
 
-That's a proof of concept to test the performance between an function in Java and Python.
-For that test I used IBM Cloud Functions, Java 8 and Python 3.
+That's a proof of concept to test the performance between a function in Java and Python.
+For that test, I used IBM Cloud Functions, Java 8 and Python 3.
 
 ## Building
 
 ### Java
 
-The first step is package your Java code.
+The first step is to package your Java code.
 ```
 cd number-in-words-java/
 mvn clean package
 ```
 
-After that you need create the function in the IBM Cloud (If you aren't logged in you'll need to run `bx login`).
+After that, you need to create the function in the IBM Cloud (If you aren't logged in you'll need to run `bx login`).
 ```
 bx wsk action create numberInWordsJava target/number-in-words-1.0-SNAPSHOT-jar-with-dependencies.jar --main br.com.evandropires.numberinwords.function.NumberInWordsFunction --web true
 ```
 
-The last step for the Java function is create a REST API for that function.
+The last step for the Java function is to create a REST API for that function.
 ```
 bx wsk api create /number-in-words /java get numberInWordsJava --response-type json
 ```
