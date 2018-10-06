@@ -1,0 +1,5 @@
+java:
+  runtime: java
+  handler: number-in-words-java/target/number-in-words-1.0-SNAPSHOT.jar:br.com.evandropires.numberinwords.function.NumberInWordsFunction
+  events:
+    - http: GET /number-in-words/java

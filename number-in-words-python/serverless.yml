@@ -1,0 +1,5 @@
+python:
+  runtime: python:3
+  handler: number-in-words-python/numberInWordsPython.main
+  events:
+    - http: GET /number-in-words/python

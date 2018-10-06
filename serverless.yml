@@ -1,0 +1,9 @@
+service: number-in-words
+provider:
+  name: openwhisk
+functions:
+  - ${file(number-in-words-java/serverless.yml)}
+  - ${file(number-in-words-nodejs/serverless.yml)}
+  - ${file(number-in-words-python/serverless.yml)}
+plugins:
+  - "serverless-openwhisk"
