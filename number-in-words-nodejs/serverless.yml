@@ -1,5 +1,5 @@
 nodejs:
   runtime: nodejs
-  handler: number-in-words-nodejs/handler.main
+  handler: number-in-words-nodejs/handler.handler
   events:
     - http: GET /number-in-words/nodejs

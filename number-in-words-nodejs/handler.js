@@ -6,8 +6,8 @@ var num2words1 = {1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five',
             15: 'fifteen', 16: 'sixteen', 17: 'seventeen', 18: 'eighteen', 19: 'nineteen'};
 var num2words2 = ['twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
 
-function main(dict) {
-    var num = Number(dict['number']);
+function main(params) {
+    var num = Number(params['number']);
     return { 'inWords': number(num) };
 }
 function number(Number) {
@@ -21,3 +21,5 @@ function number(Number) {
 
     }
 }
+
+exports.handler = main;
