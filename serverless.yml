@@ -6,4 +6,4 @@ functions:
   - ${file(number-in-words-nodejs/serverless.yml)}
   - ${file(number-in-words-python/serverless.yml)}
 plugins:
-  - "serverless-openwhisk"
+  - serverless-openwhisk
