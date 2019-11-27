@@ -3,9 +3,6 @@ package br.com.evandropires.numberinwords.service;
 import java.util.HashMap;
 import java.util.Stack;
 
-/**
- * Created by evandro on 04/06/18.
- */
 public class NumberInWordsService {
 
     private static final HashMap<Integer, String> UNIQUE_NUMBERS = new HashMap<Integer, String>();

@@ -3,9 +3,6 @@ package br.com.evandropires.numberinwords.function;
 import br.com.evandropires.numberinwords.service.NumberInWordsService;
 import com.google.gson.JsonObject;
 
-/**
- * Created by evandro on 04/06/18.
- */
 public class NumberInWordsFunction {
 
     public static JsonObject main(JsonObject payload) {
