@@ -1,45 +1,49 @@
 # Number in words
 
-That's a proof of concept to test the performance between a function in Java and Python.
-For that test, I used IBM Cloud Functions, Java 8 and Python 3.
+That's a proof of concept to test the performance between a function in Java, Python, NodeJS and Java with Quarkus/GraalVM.
+I'm using IBM Cloud Functions as the cloud provider.
 
-## Building
+## Deploy
 
-### Java
+To deploy these function we need, first of all, to build the Java project. The Quarkus function we will handle with it separetely.
 
-The first step is to package your Java code.
+Let's build our Java function:
+
 ```
 cd number-in-words-java/
 mvn clean package
 ```
 
-After that, you need to create the function in the IBM Cloud (If you aren't logged in you'll need to run `bx login`).
+After doing that, run the following command:
 ```
-bx wsk action create numberInWordsJava target/number-in-words-1.0-SNAPSHOT-jar-with-dependencies.jar --main br.com.evandropires.numberinwords.function.NumberInWordsFunction --web true
-```
-
-The last step for the Java function is to create a REST API for that function.
-```
-bx wsk api create /number-in-words /java get numberInWordsJava --response-type json
+sls deploy
 ```
 
-### Python
+You must be logged in on the IBM Cloud using `ibmcloud login` command.
 
-For setup the Python function you just need to create the function and after create the REST API, like below.
-```
-cd number-in-words-python/
-```
+### Quarkus
 
-Create the function.
-```
-bx wsk action create numberInWordsPython numberInWordsPython.py --web true
-```
+Set it up the Quarkus and GraalVM environment: https://quarkus.io/guides/building-native-image
 
-Create the REST API.
+Build the native application
 ```
-bx wsk api create /number-in-words /python get numberInWordsPython --response-type json
+cd number-in-words-quarkus/
+./mvnw package -Pnative.
 ```
 
-## Running and testing
+Build the docker image
+```
+docker build -t epiresdasilva/number-in-words-quarkus .
+```
 
-After you run the command that creates the REST API the command will return an URL. With this URL you will perform your tests using HTTP requests.
+Push it to the Docker Hub.
+```
+docker push epiresdasilva/number-in-words-quarkus
+```
+
+Create your function:
+```
+ibmcloud fn action create number-in-words-quarkus --docker epiresdasilva/number-in-words-quarkus
+```
+
+(Replace all references to `epiresdasilva` to your user)
